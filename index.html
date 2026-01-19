@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Spiral Adventure - Promo & Demo</title>
+<style>
+body {font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #fef3f3; color: #333; overflow-x: hidden; position: relative;}
+header {text-align: center; padding: 60px 20px 80px; background: linear-gradient(135deg, #ffdede, #ffeedd); position: relative; overflow: hidden;}
+header h1 {font-size: 48px; color: #e63946; margin-bottom: 10px; text-shadow: 1px 1px #ffcccc;}
+header p {font-size: 20px; margin-bottom: 20px;}
+.cta-btn {background: #f77f00; color: white; padding: 15px 30px; font-size: 20px; border: none; border-radius: 12px; cursor: pointer; transition: 0.3s;}
+.cta-btn:hover {background: #d65a00; transform: scale(1.05);}
+.screens {display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px; gap: 20px;}
+.screen {min-width: 300px; max-width: 350px; flex: 0 0 auto; scroll-snap-align: center; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s;}
+.screen img {width: 100%; display: block;}
+.screen:hover {transform: scale(1.05);}
+section {padding: 40px 20px; text-align: center;}
+section h2 {font-size: 32px; margin-bottom: 20px; color: #e63946;}
+.steps, .features {display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px;}
+.step, .feature {background: #fff1e6; padding: 20px; border-radius: 15px; width: 220px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);}
+footer {background: #ffdede; text-align: center; padding: 30px 20px;}
+.symbol {position: absolute; font-size: 24px; opacity: 0.8; animation: float 8s linear infinite; pointer-events: none;}
+@keyframes float {0% {transform: translateY(0) rotate(0deg); opacity:0.8;}50%{opacity:1;}100%{transform: translateY(-800px) rotate(360deg); opacity:0;}}
+.demo {width:100%; max-width:600px; height:600px; margin:40px auto; border:4px solid #f77f00; border-radius:20px; box-shadow:0 6px 20px rgba(0,0,0,0.25);}
+</style>
+</head>
+<body>
+
+<header id="hero">
+<h1>Random Spiral Adventure</h1>
+<p>Trust your instincts. Make choices. Watch your story unfold!</p>
+<button class="cta-btn" onclick="window.location='#demo'">Play Demo</button>
+</header>
+
+<section id="screens">
+<h2>See the Adventure</h2>
+<div class="screens">
+<div class="screen"><img src="assets/screenshots.png" alt="Screen 1"></div>
+<div class="screen"><img src="assets/screenshots.png" alt="Screen 2"></div>
+<div class="screen"><img src="assets/screenshots.png" alt="Screen 3"></div>
+<div class="screen"><img src="assets/screenshots.png" alt="Screen 4"></div>
+</div>
+</section>
+
+<section>
+<h2>How It Works</h2>
+<div class="steps">
+<div class="step"><h3>1. Pick Instinctively</h3><p>Choose letters, numbers, symbols, colors, or words quickly.</p></div>
+<div class="step"><h3>2. Watch Your Story</h3><p>Your choices generate a unique, playful story instantly.</p></div>
+<div class="step"><h3>3. Replay & Share</h3><p>Replay for new stories or share your adventure with friends!</p></div>
+</div>
+</section>
+
+<section>
+<h2>Features</h2>
+<div class="features">
+<div class="feature"><strong>Flying Symbols</strong><p>Stars, triangles, and orbs animate when chosen.</p></div>
+<div class="feature"><strong>Animated Stories</strong><p>Text appears letter by letter with subtle bounce.</p></div>
+<div class="feature"><strong>Colorful Backgrounds</strong><p>Background changes based on choices for immersive fun.</p></div>
+<div class="feature"><strong>Replayable & Shareable</strong><p>Try again or share your story instantly.</p></div>
+</div>
+</section>
+
+<section id="demo">
+<h2>Play the Demo</h2>
+<iframe class="demo" src="random_spiral_game.html" title="Random Spiral Adventure Game"></iframe>
+</section>
+
+<footer>
+<button class="cta-btn" onclick="window.location='#demo'">Try Your Random Adventure!</button>
+<p>Share your story with friends and let the fun spiral begin!</p>
+</footer>
+
+<script>
+const symbols=['⭐','🔺','⚪','⬛','🌟'];const hero=document.getElementById('hero');function createSymbol(){const sym=document.createElement('div');sym.className='symbol';sym.textContent=symbols[Math.floor(Math.random()*symbols.length)];sym.style.left=Math.random()*window.innerWidth+'px';sym.style.fontSize=(16+Math.random()*24)+'px';hero.appendChild(sym);setTimeout(()=>{sym.remove()},8000);}setInterval(createSymbol,500);
+</script>
+
+</body>
+</html>

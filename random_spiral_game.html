@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Spiral Game</title>
+<style>
+body{font-family:Arial,sans-serif;background:#fef3f3;margin:0;padding:20px;text-align:center;}
+h1{color:#e63946;}
+button{background:#f77f00;color:white;padding:10px 20px;margin:5px;border:none;border-radius:8px;cursor:pointer;}
+#story{margin-top:20px;font-size:18px;line-height:1.5;}
+</style>
+</head>
+<body>
+<h1>Random Spiral Adventure</h1>
+<div id="game"></div>
+<div id="story"></div>
+<button id="replayBtn" style="display:none;">Play Again</button>
+<script>
+const rounds=[{question:"Pick a letter (instinctively)",options:["A","B","C"],type:"letter"},{question:"Pick a number",options:["1","2","3","4","5"],type:"number"},{question:"Pick a symbol",options:["⭐","🔺","⚪","⬛"],type:"symbol"},{question:"Pick a color",options:["Red","Blue","Green","Yellow"],type:"color"},{question:"Pick a word",options:["Food","Sleep","Run","Dance"],type:"word"}];
+const mapping={letter:{A:"cautious",B:"bold",C:"curious"},number:{"1":"a little luck","2":"moderate luck","3":"high energy","4":"unexpected twist","5":"pure chance"},symbol:{"⭐":"a glowing star","🔺":"a mysterious triangle","⚪":"a floating orb","⬛":"a dark cube"},color:{Red:"passion",Blue:"calm",Green:"growth",Yellow:"joy"},word:{Food:"eat a magical feast",Sleep:"take a restorative nap",Run:"dash through the forest",Dance:"dance with the wind"}};
+let choices=[],currentRound=0;
+function showRound(){const gameDiv=document.getElementById("game");gameDiv.innerHTML="";const round=rounds[currentRound];const question=document.createElement("div");question.textContent=round.question;gameDiv.appendChild(question);round.options.forEach(opt=>{const btn=document.createElement("button");btn.textContent=opt;btn.onclick=()=>choose(opt,round.type);gameDiv.appendChild(btn);});}
+function choose(option,type){choices.push({type,value:option});currentRound++;if(currentRound<rounds.length){showRound();}else{generateStory();}}
+function generateStory(){const gameDiv=document.getElementById("game");gameDiv.innerHTML="";const letter=mapping.letter[choices[0].value];const number=mapping.number[choices[1].value];const symbol=mapping.symbol[choices[2].value];const color=mapping.color[choices[3].value];const word=mapping.word[choices[4].value];document.getElementById("story").textContent=`You are a ${letter} traveler who encounters ${symbol}. With ${number} and a feeling of ${color}, you ${word}. A new adventure awaits as the world shifts in unexpected ways!`;document.getElementById("replayBtn").style.display="inline-block";}
+document.getElementById("replayBtn").onclick=()=>{choices=[];currentRound=0;document.getElementById("story").textContent="";document.getElementById("replayBtn").style.display="none";showRound();};
+showRound();
+</script>
+</body>
+</html>
